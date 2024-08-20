@@ -27,7 +27,10 @@ async function getweatherData(cityName)
        //const response = await fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${apiKey}&units=metric`)
         
         if(!response.ok)
-        { throw new Error("Network response is not ok!")}
+        {
+            alert("Invalid Location!");
+            throw new Error (`HTTP error! status: ${response.status}`);
+        }
         
         const data = await response.json()
         console.log(data)
@@ -84,10 +87,7 @@ async function getweatherData(cityName)
         });
     
     } catch (error) {
-        
-        alert("An Error Occured!")
-        console.log(error)
-
+        console.log(`There was a problem with the fetch operation`+ error.message)
     }
 }
 
